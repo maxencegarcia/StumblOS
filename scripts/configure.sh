@@ -17,4 +17,5 @@ lb config \
   --iso-application "${DISTRO_NAME}" \
   --image-name "${DISTRO_NAME}" \
   --checksums sha256 \
+  --apt-recommends false \
   --bootappend-live "boot=live components locales=fr_FR.UTF-8 keyboard-layouts=fr timezone=Europe/Paris"

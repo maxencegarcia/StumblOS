@@ -1,0 +1,13 @@
+# Wi-Fi : NetworkManager en a besoin (non tiré sans recommandations)
+wpasupplicant
+
+# Micrologiciels (dépôt non-free-firmware)
+firmware-amd-graphics
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+firmware-misc-nonfree
+amd64-microcode
+
+# Session Plasma X11 de secours, utile en VM et sur pilotes capricieux
+kwin-x11
