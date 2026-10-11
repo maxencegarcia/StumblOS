@@ -1,0 +1,9 @@
+# Répertoire de travail de live-build (régénérable)
+build/
+# ISO produites et leurs empreintes
+out/
+*.iso
+*.sha256
+# Fichiers temporaires d'éditeurs
+*~
+*.swp
