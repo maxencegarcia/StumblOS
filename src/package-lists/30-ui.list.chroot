@@ -1,0 +1,7 @@
+# Polices (fonts-noto-cjk : japonais, ~89 Mo installés)
+fonts-noto-core
+fonts-noto-cjk
+fonts-noto-color-emoji
+
+# Thème de connexion SDDM de base (point de départ de la personnalisation)
+sddm-theme-breeze
