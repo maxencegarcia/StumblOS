@@ -1,0 +1,3 @@
+# Recommandations de live-config perdues avec --apt-recommends false
+# user-setup : sans lui, live-config ne crée pas le compte utilisateur
+user-setup
