@@ -1,0 +1,29 @@
+# Bureau KDE Plasma (construit sans recommandations APT)
+kde-plasma-desktop
+sddm
+
+# Composants que les recommandations apportaient
+systemsettings
+kscreen
+powerdevil
+mate-terminal
+
+# Réseau
+network-manager
+plasma-nm
+
+# Audio
+pipewire-pulse
+wireplumber
+plasma-pa
+
+# Bluetooth
+bluedevil
+
+# Langue et clavier
+locales
+console-setup
+
+# Applications
+firefox-esr
+vlc
