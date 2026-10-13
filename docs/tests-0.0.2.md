@@ -27,3 +27,6 @@
 
 ## Outils de disque présents
 - parted est tiré par udisks2 (gestion des disques sous KDE) ; ce ne sont pas des installateurs
+
+## Secure Boot
+- Non testé, par choix (hors des critères de la v1)
