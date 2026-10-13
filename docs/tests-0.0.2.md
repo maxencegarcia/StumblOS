@@ -20,4 +20,10 @@
 - Aucun lanceur d'installation dans les 96 lanceurs du menu (seul kfontinst, gestionnaire de polices)
 
 ## À tester
-- BIOS (isolinux), Secure Boot, redémarrage, son, matériel réel
+- Secure Boot, redémarrage, son, matériel réel
+
+## BIOS (isolinux)
+- Démarrage BIOS (SeaBIOS) dans une VM : bureau Plasma atteint, autologin OK
+
+## Outils de disque présents
+- parted est tiré par udisks2 (gestion des disques sous KDE) ; ce ne sont pas des installateurs
