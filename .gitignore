@@ -7,3 +7,4 @@ out/
 # Fichiers temporaires d'éditeurs
 *~
 *.swp
+assets/private/

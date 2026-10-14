@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "ttixstumble"
+            }
+        ],
+        "Id": "distro-default",
+        "License": "All rights reserved",
+        "Name": "Fond par défaut"
+    }
+}
