@@ -1,0 +1,4 @@
+# Intégration GTK/KDE : les applis GTK (Firefox, mate-terminal) suivent le thème sombre
+breeze-gtk-theme
+kde-config-gtk-style
+xdg-desktop-portal-kde
