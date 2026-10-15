@@ -18,3 +18,7 @@ IMG="$ROOT/assets/private/fond.jpg"
 SIZE="$(file -b "$IMG" | grep -oE '[0-9]{3,5}x[0-9]{3,5}' | head -1)"
 install -D -m 644 "$IMG" "$DEST/includes.chroot_after_packages/usr/share/wallpapers/distro-default/contents/images/${SIZE}.jpg"
 echo "Fond d'écran installé : ${SIZE}.jpg"
+
+# Fond de l'écran de connexion SDDM : chemin fixe, indépendant de la taille de l'image
+install -D -m 644 "$IMG" "$DEST/includes.chroot_after_packages/usr/share/distro/sddm/background.jpg"
+echo "Fond SDDM installé : usr/share/distro/sddm/background.jpg"

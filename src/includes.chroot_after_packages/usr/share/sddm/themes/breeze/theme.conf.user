@@ -1,0 +1,4 @@
+[General]
+type=image
+color=#0f1024
+background=/usr/share/distro/sddm/background.jpg
