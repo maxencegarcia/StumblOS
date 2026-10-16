@@ -5,7 +5,7 @@ widgetStyle=Breeze
 ColorScheme=DistroNight
 
 [kdeglobals][Icons]
-Theme=breeze-dark
+Theme=Papirus-Dark
 
 [plasmarc][Theme]
 name=default

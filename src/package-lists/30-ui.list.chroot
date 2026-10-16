@@ -5,3 +5,7 @@ fonts-noto-color-emoji
 
 # Thème de connexion SDDM de base (point de départ de la personnalisation)
 sddm-theme-breeze
+
+# Icônes : Papirus (GPL-3), variante sombre par défaut
+papirus-icon-theme
+librsvg2-common
