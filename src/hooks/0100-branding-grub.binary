@@ -1,0 +1,22 @@
+#!/bin/sh
+# Hook live-build (étape binary_hooks) : exécuté depuis binary/, APRÈS la
+# génération de boot/grub/grub.cfg. Renomme les entrées « Live system ».
+# @DISTRO_LABEL@ est remplacé par scripts/sync.sh (valeur de project.env).
+set -e
+
+LABEL="@DISTRO_LABEL@"
+CFG="boot/grub/grub.cfg"
+
+[ -f "$CFG" ] || { echo "ERREUR hook branding : $CFG introuvable (cwd : $(pwd))" >&2; exit 1; }
+
+sed -i -E \
+  -e "s/menuentry \"Live system \(([^ )]+) fail-safe mode\)\"/menuentry \"${LABEL} Live (mode sans échec)\"/" \
+  -e "s/menuentry \"Live system \(([^ )]+)\)\"/menuentry \"${LABEL} Live\"/" \
+  "$CFG"
+
+# Échec bruyant plutôt que silencieux si le remplacement n'a rien trouvé
+grep -q "menuentry \"${LABEL} Live\"" "$CFG" \
+  || { echo "ERREUR hook branding : entrée « ${LABEL} Live » absente de $CFG" >&2; exit 1; }
+grep -q "menuentry \"${LABEL} Live (mode sans échec)\"" "$CFG" \
+  || { echo "ERREUR hook branding : entrée « mode sans échec » absente de $CFG" >&2; exit 1; }
+echo "Hook branding : entrées GRUB renommées en « ${LABEL} Live »"
