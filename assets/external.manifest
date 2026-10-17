@@ -1,0 +1,4 @@
+# nom|fichier|url|taille en octets|sha256   (A_EPINGLER = à remplir avec : scripts/fetch-assets.sh --pin)
+# Le fichier du .deb doit se terminer par _amd64.deb : live-build ignore les autres noms.
+vscode|code_1.142.0-1792035033_amd64.deb|https://vscode.download.prss.microsoft.com/dbazure/download/stable/6d62b1d5dace93a33b3a6d3eca1317bd5e15bcb1/code_1.142.0-1792035033_amd64.deb|239610838|33454f7d2d7bc79a5925b3e794d106fb454a10c6a635ddfeb908a63659a44ec5
+osu|osu-2026.1005.0-lazer.AppImage|https://github.com/ppy/osu/releases/download/2026.1005.0-lazer/osu.AppImage|187636216|284108e65373a8339beeca40e2c14b1528c177bd6ce1eb21407639f8e508da2e

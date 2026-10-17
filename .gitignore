@@ -8,3 +8,5 @@ out/
 *~
 *.swp
 assets/private/
+assets/downloads/
+assets/cache/
