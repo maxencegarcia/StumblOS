@@ -5,6 +5,11 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT/project.env"
 DEST="$ROOT/build/config"
+MANIFEST="$ROOT/assets/external.manifest"
+DL="$ROOT/assets/downloads"
+
+# Nom de fichier d'une ressource externe, d'après le manifeste
+manifest_file() { awk -F'|' -v n="$1" '$1==n {print $2}' "$MANIFEST"; }
 
 # Listes de paquets
 install -d "$DEST/package-lists"
@@ -29,9 +34,32 @@ install -d "$DEST/includes.binary/boot/grub"
 python3 "$ROOT/scripts/make-grub-splash.py" "$IMG" "$DEST/includes.binary/boot/grub/splash.png"
 echo "Fond GRUB généré : includes.binary/boot/grub/splash.png"
 
-# Hooks de l'étape binary : @DISTRO_LABEL@ remplacé par la valeur de project.env
+# Ressources externes (téléchargées et vérifiées par scripts/fetch-assets.sh)
+VSCODE_DEB="$(manifest_file vscode)"
+if [ ! -f "$DL/$VSCODE_DEB" ]; then
+    echo "ERREUR : $DL/$VSCODE_DEB absent. Lance d'abord ./scripts/fetch-assets.sh" >&2
+    exit 1
+fi
+install -D -m 644 "$DL/$VSCODE_DEB" "$DEST/packages.chroot/$VSCODE_DEB"
+echo "VS Code : $VSCODE_DEB -> packages.chroot"
+
+OSU_SRC="$ROOT/assets/cache/osu/squashfs-root"
+if [ ! -d "$OSU_SRC" ]; then
+    echo "ERREUR : $OSU_SRC absent. Lance d'abord ./scripts/fetch-assets.sh" >&2
+    exit 1
+fi
+install -d "$DEST/includes.chroot_after_packages/opt/osu"
+cp -a "$OSU_SRC/." "$DEST/includes.chroot_after_packages/opt/osu/"
+echo "osu!lazer : AppImage extraite -> /opt/osu"
+
+# Réponses debconf données avant l'installation des paquets
+install -d "$DEST/preseed"
+cp -v "$ROOT"/src/preseed/*.cfg "$DEST/preseed/"
+
+# Hooks (.binary : exécutés sur l'ISO ; .chroot : exécutés dans la chroot).
+# @DISTRO_LABEL@ est remplacé par la valeur de project.env.
 install -d "$DEST/hooks/normal"
-for HOOK in "$ROOT"/src/hooks/*.binary; do
+for HOOK in "$ROOT"/src/hooks/*.binary "$ROOT"/src/hooks/*.chroot; do
     [ -e "$HOOK" ] || continue
     sed "s|@DISTRO_LABEL@|${DISTRO_LABEL}|g" "$HOOK" > "$DEST/hooks/normal/$(basename "$HOOK")"
     chmod 755 "$DEST/hooks/normal/$(basename "$HOOK")"

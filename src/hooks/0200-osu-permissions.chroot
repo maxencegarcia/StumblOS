@@ -1,0 +1,5 @@
+#!/bin/sh
+# Hook live-build (exécuté DANS la chroot) : les fichiers d'/opt/osu viennent de la vm de build
+# avec son uid ; on les rend à root.
+set -e
+chown -R root:root /opt/osu

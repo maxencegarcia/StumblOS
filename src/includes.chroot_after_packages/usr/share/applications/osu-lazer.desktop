@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.5
+Type=Application
+Name=osu!lazer
+Comment=Jeu de rythme
+Icon=/opt/osu/osu.png
+Exec=/opt/osu/AppRun %u
+Terminal=false
+Categories=Game;
+StartupWMClass=osu!
+StartupNotify=true
