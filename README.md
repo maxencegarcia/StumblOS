@@ -1,3 +1,4 @@
+Utilisé surtout pas cette ISO a la base elle est pour moi elle ne seras donc pas mis a jour pour la sécurité etc si je rajoute des choses c'est juste que j'en ai besoin ou alors c'est pour mon plaisir perso c'est tout
 # Distribution Live Debian 13 + KDE Plasma (StumblOS)
 
 ISO Live non installable, construite avec live-build.
@@ -7,11 +8,9 @@ ISO Live non installable, construite avec live-build.
 - `assets/` : ressources graphiques
 - `scripts/` : scripts de construction
 - `docs/` : documentation
-- `build/` : répertoire de travail de live-build (ignoré par Git)
-- `out/` : ISO produites (ignoré par Git)
+
 
 ## Prérequis
 Debian 13, paquets `live-build` et `git`.
 
-## Construction / Test / Problèmes connus
 
