@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Génère la configuration live-build dans build/ (aucun téléchargement).
+# Génère la configuration live-build dans build/.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

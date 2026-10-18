@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copie les sources de src/ et assets/ vers build/config/ (n'efface rien).
+# Copie les sources de src/ et assets/ vers build/config/.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -15,26 +15,26 @@ manifest_file() { awk -F'|' -v n="$1" '$1==n {print $2}' "$MANIFEST"; }
 install -d "$DEST/package-lists"
 cp -v "$ROOT"/src/package-lists/*.list.chroot "$DEST/package-lists/"
 
-# Fichiers injectés dans le système après l'installation des paquets
+# Fichiers injectés dans le système
 install -d "$DEST/includes.chroot_after_packages"
 cp -a "$ROOT/src/includes.chroot_after_packages/." "$DEST/includes.chroot_after_packages/"
 
-# Fond d'écran : image hors dépôt, nommée <largeur>x<hauteur>.jpg comme Plasma l'attend
+# Fond d'écran : image hors dépôt mais present iso
 IMG="$ROOT/assets/private/fond.jpg"
 SIZE="$(file -b "$IMG" | grep -oE '[0-9]{3,5}x[0-9]{3,5}' | head -1)"
 install -D -m 644 "$IMG" "$DEST/includes.chroot_after_packages/usr/share/wallpapers/distro-default/contents/images/${SIZE}.jpg"
 echo "Fond d'écran installé : ${SIZE}.jpg"
 
-# Fond de l'écran de connexion SDDM : chemin fixe, indépendant de la taille de l'image
+# Fond de l'écran de connexion SDDM
 install -D -m 644 "$IMG" "$DEST/includes.chroot_after_packages/usr/share/distro/sddm/background.jpg"
 echo "Fond SDDM installé : usr/share/distro/sddm/background.jpg"
 
-# Fond du menu GRUB (800x600, généré) : posé dans l'ISO via includes.binary
+# Fond du menu GRUB
 install -d "$DEST/includes.binary/boot/grub"
 python3 "$ROOT/scripts/make-grub-splash.py" "$IMG" "$DEST/includes.binary/boot/grub/splash.png"
 echo "Fond GRUB généré : includes.binary/boot/grub/splash.png"
 
-# Ressources externes (téléchargées et vérifiées par scripts/fetch-assets.sh)
+# Ressources externes  vscode et osu
 VSCODE_DEB="$(manifest_file vscode)"
 if [ ! -f "$DL/$VSCODE_DEB" ]; then
     echo "ERREUR : $DL/$VSCODE_DEB absent. Lance d'abord ./scripts/fetch-assets.sh" >&2
@@ -52,7 +52,7 @@ install -d "$DEST/includes.chroot_after_packages/opt/osu"
 cp -a "$OSU_SRC/." "$DEST/includes.chroot_after_packages/opt/osu/"
 echo "osu!lazer : AppImage extraite -> /opt/osu"
 
-# Réponses debconf données avant l'installation des paquets
+# Réponses debconf
 install -d "$DEST/preseed"
 cp -v "$ROOT"/src/preseed/*.cfg "$DEST/preseed/"
 

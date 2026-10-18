@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 # Télécharge les ressources externes listées dans assets/external.manifest,
-# vérifie leur taille et leur sha256, puis extrait l'AppImage d'osu!lazer.
 #
-# Usage : fetch-assets.sh          télécharge et vérifie (échoue si un sha256 reste à épingler)
-#         fetch-assets.sh --pin    écrit dans le manifeste le sha256 des fichiers « A_EPINGLER »
-#
-# Le sha256 épinglé la première fois ne prouve pas l'origine du fichier : il garantit seulement
-# qu'on obtiendra ensuite exactement le même. Relis `git diff assets/external.manifest` avant commit.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -55,7 +49,7 @@ done < "$MANIFEST"
 
 [ "$PENDING" = 0 ] || exit 2
 
-# osu!lazer : extraction de l'AppImage (le fichier est EXÉCUTÉ, donc seulement après vérification)
+# osu!lazer extraction de l'AppImage
 OSU_FILE="$(awk -F'|' '$1=="osu"{print $2}' "$MANIFEST")"
 OSU_CACHE="$ROOT/assets/cache/osu"
 if [ -n "$OSU_FILE" ] && [ ! -d "$OSU_CACHE/squashfs-root" ]; then
